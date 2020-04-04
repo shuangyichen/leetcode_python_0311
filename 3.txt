@@ -1,0 +1,9 @@
+class Solution:
+    def findRepeatNumber(self, nums: List[int]) -> int:
+        #nums = sorted(nums)
+        for i in range(len(nums)):
+            if i!=nums[i]:
+                if nums[i]==nums[nums[i]]:
+                    return nums[i]
+                else:
+                    nums[nums[i]],nums[i]=nums[i],nums[nums[i]]
