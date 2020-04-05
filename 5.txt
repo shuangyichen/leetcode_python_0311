@@ -1,0 +1,32 @@
+class Solution:
+    def replaceSpace(self, s: str) -> str:
+        l = len(s)
+        l1 = l
+        if l==0:
+            return ''
+        for i in range(l):
+            if s[i]==' ':
+                l1+=2
+                s+='  '
+        p1 = l-1
+        p2 = l1 - 1
+        # for i in range(s_len, new_len):
+        #     s += ' '
+        while p1>=0 and p1<p2:
+            if s[p1]==' ':
+                s = s[0:p2]+'0'+s[p2+1:l1]
+                p2-=1
+                s = s[0:p2]+'2'+s[p2+1:l1]
+                p2-=1
+                s = s[0:p2]+'%'+s[p2+1:l1]
+                p2-=1
+                p1-=1
+            else:
+                s=s[0:p2]+s[p1]+s[p2+1:l1]
+                p2-=1
+                p1-=1
+        return s
+
+class Solution:
+    def replaceSpace(self, s: str) -> str:
+        return s.replace(' ','%20')

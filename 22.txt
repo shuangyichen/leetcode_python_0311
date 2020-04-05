@@ -1,0 +1,14 @@
+class Solution:
+    def getKthFromEnd(self, head: ListNode, k: int) -> ListNode:
+        ceng = 0
+        dummy = ListNode(0)
+        dummy.next = head
+        while head:
+            ceng+=1
+            head = head.next
+        i = 0
+        while dummy:
+            i+=1
+            if i==ceng-k+2:
+                return dummy
+            dummy=dummy.next
