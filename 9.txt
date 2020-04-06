@@ -1,0 +1,21 @@
+class CQueue:
+
+    def __init__(self):
+        self.stackin=[]
+        self.stackout=[]
+
+
+    def appendTail(self, value: int) -> None:
+        self.stackin.append(value)
+
+
+    def deleteHead(self) -> int:
+        if self.stackout:
+            return self.stackout.pop()
+        else:
+            if self.stackin==[]:
+                return -1
+            elif self.stackin:
+                while(self.stackin):
+                    self.stackout.append(self.stackin.pop())
+                return self.stackout.pop()

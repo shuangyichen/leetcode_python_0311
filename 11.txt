@@ -1,0 +1,18 @@
+class Solution:
+    def minArray(self, numbers: List[int]) -> int:
+        if numbers==[]:
+            return []
+        elif len(numbers)==1:
+            return numbers[0]
+        start = 0
+        end = len(numbers)-1
+        mid = int(len(numbers)/2)
+        while start<end:
+            mid = int((start+end)/2)
+            if numbers[mid]>numbers[end]:
+                start = mid+1
+            elif numbers[mid]<numbers[end]:
+                end = mid
+            elif numbers[mid]==numbers[end]:
+                end-=1
+        return numbers[start]

@@ -1,0 +1,25 @@
+
+class Solution:
+    def fib(self, n: int) -> int:
+        if n==0:return 0
+        elif n==1:return 1
+        fn_2 = 0
+        fn_1 = 1
+        f = 0
+        for i in range(2,n+1):
+            f = fn_2 + fn_1
+            fn_2 = fn_1
+            fn_1 = f
+        return f%1000000007
+#青蛙一次可跳fn_2或fn_1步，即将斐波那契数列前两项改成fn_2和fn_1
+class Solution:
+    def numWays(self, n: int) -> int:
+        if n==0 or n==1:return 1
+        fn_2 = 1
+        fn_1 = 1
+        f = 0
+        for i in range(2,n+1):
+            f = fn_2 + fn_1
+            fn_2 = fn_1
+            fn_1 = f
+        return f%1000000007

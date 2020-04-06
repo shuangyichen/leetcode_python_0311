@@ -1,0 +1,16 @@
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        if preorder==[]:
+            return None
+        start = preorder[0]
+        res = TreeNode(start)
+        startindex = inorder.index(start)
+        left_in = inorder[0:startindex]
+        right_in = inorder[startindex+1:len(inorder)]
+        left_pre = preorder[1:startindex+1]
+        right_pre = preorder[startindex+1:len(preorder)]
+        left_tree = self.buildTree(left_pre,left_in)
+        right_tree = self.buildTree(right_pre,right_in)
+        res.left = left_tree
+        res.right = right_tree
+        return res
