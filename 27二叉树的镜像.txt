@@ -1,0 +1,8 @@
+class Solution:
+    def mirrorTree(self, root: TreeNode) -> TreeNode:
+        if root==None:
+            return root
+        root.left = self.mirrorTree(root.left)
+        root.right = self.mirrorTree(root.right)
+        root.right,root.left = root.left,root.right
+        return root

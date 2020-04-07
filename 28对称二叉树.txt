@@ -1,0 +1,29 @@
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        res1 = []
+        res2 = []
+
+        def qian(root):
+            res = []
+            if root==None:
+                return ['n']
+            if root:
+                res.append(root.val)
+                res+=qian(root.left)
+                res+=qian(root.right)
+            return res
+        def you(root):
+            res = []
+            if root==None:
+                return ['n']
+            if root:
+                res.append(root.val)
+                res+=you(root.right)
+                res+=you(root.left)
+            return res
+        res1 = qian(root)
+        res2 = you(root)
+        if res1==res2:
+            return True
+        else:
+            return False
