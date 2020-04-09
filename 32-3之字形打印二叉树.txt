@@ -1,0 +1,26 @@
+class Solution:
+    def levelOrder(self, root: TreeNode):
+        res = []
+        if not root:
+            return res
+        cur_layer = [root]
+        layer = 0
+        while len(cur_layer)>0:
+            temp = []
+            next_layer = []
+            for r in cur_layer:
+                temp.append(r.val)
+            cur_layer.reverse()
+            if layer%2==1:
+                for r in cur_layer:
+                    if r.left:next_layer.append(r.left)
+                    if r.right:next_layer.append(r.right)
+            elif layer%2==0:
+                for r in cur_layer:
+                    if r.right:next_layer.append(r.right)
+                    if r.left:next_layer.append(r.left)
+
+            cur_layer = next_layer
+            res.append(temp)
+            layer+=1
+        return res

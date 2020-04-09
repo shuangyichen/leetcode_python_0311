@@ -1,0 +1,13 @@
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        res = self.inorder(root)
+        return res[k-1]
+    def inorder(self,root):
+        if not root:
+            return []
+        res = []
+        if root:
+            if root.left:res+=self.inorder(root.left)
+            res.append(root.val)
+            if root.right:res+=self.inorder(root.right)
+        return res

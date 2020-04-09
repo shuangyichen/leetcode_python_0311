@@ -1,0 +1,57 @@
+class Solution:
+    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
+        stack = []
+        for pop in popped:
+            if stack:
+                if stack[-1]==pop:
+                    stack.pop()
+                elif stack[-1]!=pop:
+                    try:
+                        index = pushed.index(pop)
+                        for i in range(0,index+1):
+                            stack.append(pushed[i])
+                        pushed=pushed[index+1:len(pushed)]
+                        stack.pop()
+                    except:
+                        return False
+            else:
+                try:
+                    index = pushed.index(pop)
+                    for i in range(0,index+1):
+                        stack.append(pushed[i])
+                    pushed=pushed[index+1:len(pushed)]
+                    stack.pop()
+                except:
+                    return False
+        return True
+#从上方精简而来
+class Solution:
+    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
+        stack = []
+        for pop in popped:
+            if stack and stack[-1]==pop:
+                stack.pop()
+            else:
+                try:
+                    index = pushed.index(pop)
+                    for i in range(0,index+1):
+                        stack.append(pushed[i])
+                    pushed=pushed[index+1:len(pushed)]
+                    stack.pop()
+                except:
+                    return False
+        return True
+
+ def validateStackSequences(pushed, popped):
+        tmp_stack = list()
+        pointer = 0
+        for i in pushed:
+            tmp_stack.append(i)
+            # 这个while用来模拟（连续）pop的过程，一直符合一直pop
+            while tmp_stack[-1] == popped[pointer]:
+                print(tmp_stack,popped[pointer],pointer)
+                tmp_stack.pop()
+                pointer += 1
+                if len(tmp_stack) == 0:
+                    break
+        return len(popped) == pointer

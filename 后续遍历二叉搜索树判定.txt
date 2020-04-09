@@ -1,0 +1,20 @@
+class Solution:
+    def verifyPostorder(self, postorder: List[int]) -> bool:
+        if not postorder:
+            return True
+        if postorder:
+            root = postorder[-1]
+        left = []
+        right = []
+        ifright = False
+        for i in postorder[0:-1]:
+            if i > root:
+                right.append(i)
+                ifright = True
+            if i < root and ifright==False:
+                left.append(i)
+            elif i<root and ifright==True:
+                return False
+        Left = self.verifyPostorder(left)
+        Right = self.verifyPostorder(right)
+        return (Left and Right)
