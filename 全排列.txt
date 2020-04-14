@@ -1,0 +1,13 @@
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        output = []
+        lenth = len(nums)
+        def backtrack(n):
+            if n==lenth:
+                output.append(nums[:])
+            for i in range(n,lenth):
+                nums[n],nums[i]=nums[i],nums[n]
+                backtrack(n+1)
+                nums[n],nums[i]=nums[i],nums[n]
+        backtrack(0)
+        return output

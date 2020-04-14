@@ -1,0 +1,15 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        output = []
+        def backtrack(cur,s,j):
+            if s<0:
+                return 
+            if s==0:
+                output.append(cur.copy())
+                return
+            for i in range(j,len(candidates)):
+                cur.append(candidates[i])
+                backtrack(cur,s-candidates[i],i)
+                cur.pop()
+        backtrack([],target,0)
+        return output

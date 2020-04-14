@@ -1,0 +1,17 @@
+class Solution:
+    def integerBreak(self, n: int) -> int:
+        if n<2:return 0
+        elif n==2:return 1
+        elif n==3:return 2
+        products = []
+        for i in range(0,4):
+            products.append(i)
+        maxi = 0
+        for j in range(4,n+1):
+            for k in range(1,int(j/2)+1):
+                pro = products[k]*products[j-k]
+                if maxi<pro:
+                    maxi = pro
+                if len(products)<=j:products.append(maxi)
+                else:products[j]=maxi
+        return products[n]
